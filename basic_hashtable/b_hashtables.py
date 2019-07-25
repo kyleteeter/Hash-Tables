@@ -16,7 +16,7 @@ class Pair:
 class BasicHashTable:
     def __init__(self, capacity):
         self.capacity = capacity
-        self.elements = [None] * capacity
+        self.storage = [None] * capacity
         self.count = 0
 
 
@@ -42,11 +42,11 @@ def hash_table_insert(hash_table, key, value):
     #Get hashed version of key
     key_hash = hash(key)
     #Form new key value pair
-    # new_pair = Pair(key, value)
+    new_pair = Pair(key, value)
     #Find the index of pair
     index = key_hash % hash_table.capacity
     # Insert pair
-    hash_table.storage[index].value = value
+    hash_table.storage[index] = new_pair
 
 # '''
 # Fill this in.
