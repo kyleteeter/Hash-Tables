@@ -54,7 +54,17 @@ def hash_table_insert(hash_table, key, value):
 # If you try to remove a value that isn't there, print a warning.
 # '''
 def hash_table_remove(hash_table, key):
-    pass
+    removed = False
+    for i in range(hash_table.count):
+        if removed:
+            hash_table.elements[i-1] == hash_table.elements[i]
+        elif hash_table.elements[i] == key:
+            removed = True
+        if removed:
+            hash_table -=1
+            hash_table[hash_table.count] = None
+        else:
+            print("Error")
 
 
 # '''
@@ -63,7 +73,7 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 def hash_table_retrieve(hash_table, key):
-    pass
+    
 
 
 def Testing():
