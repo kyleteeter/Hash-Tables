@@ -28,7 +28,7 @@ def hash(string, max):
   hash = 5381
   
   for character in string:
-    hash = (( hash << 2) + hash) + ord(character)
+    hash = (( hash << 5) + hash) + ord(character)
    
   return hash % max
 
@@ -39,9 +39,15 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    pass
-
-
+    #Throw an error if array is out of count
+    if value > hash_table.count:
+        print('')
+    #Move elements to create a space at value 
+    for i in range(hash_table.count, value, - 1):
+        hash_table.elements[i] = hash_table.elements[i-1]
+    #Add new element to array and update count.
+    hash_table.elements[value] = key
+    hash_table.count += 1
 # '''
 # Fill this in.
 
