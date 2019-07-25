@@ -24,13 +24,13 @@ class BasicHashTable:
 # Fill this in.
 # Research and implement the djb2 hash function
 # '''
-def hash(string, max):
+def hash(string):
   hash = 5381
   
   for character in string:
     hash = (( hash << 5) + hash) + ord(character)
    
-  return hash % max
+  return hash 
 
 
 # '''
@@ -39,15 +39,15 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    #Throw an error if array is out of count
-    if value > hash_table.count:
-        print('')
-    #Move elements to create a space at value 
-    for i in range(hash_table.count, value, - 1):
-        hash_table.elements[i] = hash_table.elements[i-1]
-    #Add new element to array and update count.
-    hash_table.elements[value] = key
-    hash_table.count += 1
+    #Get hashed version of key
+    key_hash = hash(key)
+    #Form new key value pair
+    # new_pair = Pair(key, value)
+    #Find the index of pair
+    index = key_hash % hash_table.capacity
+    # Insert pair
+    hash_table.storage[index].value = value
+
 # '''
 # Fill this in.
 
@@ -73,7 +73,17 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 def hash_table_retrieve(hash_table, key):
-    
+    if hash_table.count <= 0:
+        print("Empty")
+    else:
+        string = "["
+        for i in range(hash_table.count):
+            string += str(hash_table.elements[i])
+            if i < hash_table.count - 1:
+                string += ", "
+
+        string += "]"
+        print(string)
 
 
 def Testing():
