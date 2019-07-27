@@ -42,6 +42,7 @@ def hash(string, max):
 # '''
 def hash_table_insert(hash_table, key, value):
       if hash_table.count == hash_table.capacity:
+        hash_table.resize
         index = hash(key, hash_table.capacity)
         if hash_table.storage[index] == None:
             hash_table.storage[index] = LinkedPair(key, value)
@@ -95,7 +96,12 @@ def hash_table_retrieve(hash_table, key):
 # Fill this in
 # '''
 def hash_table_resize(hash_table):
-    if hash_table.capacity == hash_table.count:
+    new_hash_table = HashTable(hash_table.capacity * 2)
+    new_hash_table.storage = [None] * new_hash_table.capacity
+    for i in range(len(hash_table.storage)):
+        new_hash_table.storage[i] = hash_table.storage[i]
+        hash_table.storage[i] = None
+    return new_hash_table
 
 
 def Testing():
