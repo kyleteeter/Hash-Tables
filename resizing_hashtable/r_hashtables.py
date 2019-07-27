@@ -25,7 +25,12 @@ class HashTable:
 # Research and implement the djb2 hash function
 # '''
 def hash(string, max):
-    pass
+    hash = 5381
+
+    for character in string:
+        hash = (( hash << 5) + hash) + ord(character)
+
+    return hash % max
 
 
 # '''
@@ -34,7 +39,23 @@ def hash(string, max):
 # Hint: Used the LL to handle collisions
 # '''
 def hash_table_insert(hash_table, key, value):
-    pass
+    #Get hashed version of key
+    key_hash = hash(key)
+    #Find the index of pair
+    index = key_hash % hash_table.capacity
+    current_pair = hash_table.storage[index]
+
+    while current_pair is not None and current_pair.key != key:
+      current_pair = current_pair.next
+    if current_pair is None:
+      new_pair = Pair(key, value)
+      new_pair.next = hash_table.storage[index]
+      hash_table.storage[index] = new_pair
+    else:
+      current_pair.value = value
+
+    # Insert pair
+    hash_table.storage[index] = new_pair
 
 
 # '''

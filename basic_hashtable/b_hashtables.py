@@ -25,13 +25,13 @@ class BasicHashTable:
 # Fill this in.
 # Research and implement the djb2 hash function
 # '''
-def hash(string):
+def hash(string, max):
   hash = 5381
   
   for character in string:
     hash = (( hash << 5) + hash) + ord(character)
    
-  return hash 
+  return hash % max
 
 
 # '''
@@ -41,15 +41,12 @@ def hash(string):
 # '''
 def hash_table_insert(hash_table, key, value):
     #Get hashed version of key
-    key_hash = hash(key)
-    # #Form new key value pair
-    # new_pair = Pair(key, value)
-
-    
-
-    
-    #Find the index of pair
-    index = key_hash % hash_table.capacity
+    # key_hash = hash(key)
+    # # #Form new key value pair
+    # # new_pair = Pair(key, value)
+    # #Find the index of pair
+    # index = key_hash % hash_table.capacity
+    index = hash(key, hash_table.capacity)
     current_pair = hash_table.storage[index]
 
     while current_pair is not None and current_pair.key != key:
@@ -71,9 +68,10 @@ def hash_table_insert(hash_table, key, value):
 # '''
 def hash_table_remove(hash_table, key):
     #Hash Key
-    key_hash = hash(key)
-    #Get index
-    index = key_hash % hash_table.capacity
+    # key_hash = hash(key)
+    # #Get index
+    # index = key_hash % hash_table.capacity
+    index = hash(key, hash_table.capacity)
     #Remove value by setting it to None
     if hash_table.storage[index] != None:
         hash_table.storage[index] = None
@@ -84,9 +82,10 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 def hash_table_retrieve(hash_table, key):
-    key_hash = hash(key)
+    # key_hash = hash(key)
 
-    index = key_hash % hash_table.capacity
+    # index = key_hash % hash_table.capacity
+    index = hash(key, hash_table.capacity)
 
     if hash_table.storage[index] is not None:
         
