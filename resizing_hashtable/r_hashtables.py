@@ -17,7 +17,9 @@ class LinkedPair:
 # '''
 class HashTable:
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity 
+        self.storage = [None] * capacity
+        self.count = 0
 
 
 
@@ -68,7 +70,10 @@ def hash_table_insert(hash_table, key, value):
 # If you try to remove a value that isn't there, print a warning.
 # '''
 def hash_table_remove(hash_table, key):
-    pass
+    index = hash(key, hash_table.capacity)
+    
+    if hash_table.storage[index] != None:
+        hash_table.storage[index] = None
 
 
 # '''
@@ -84,7 +89,7 @@ def hash_table_retrieve(hash_table, key):
 # Fill this in
 # '''
 def hash_table_resize(hash_table):
-    pass
+    if hash_table.capacity == hash_table.count:
 
 
 def Testing():
