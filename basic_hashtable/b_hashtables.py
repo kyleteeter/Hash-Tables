@@ -41,7 +41,7 @@ def hash(string):
 # '''
 def hash_table_insert(hash_table, key, value):
     #Get hashed version of key
-    # key_hash = hash(key)
+    key_hash = hash(key)
     # #Form new key value pair
     # new_pair = Pair(key, value)
 
@@ -49,7 +49,7 @@ def hash_table_insert(hash_table, key, value):
 
     
     #Find the index of pair
-    index = hash(key, hash_table.capacity)
+    index = key_hash % hash_table.capacity
     current_pair = hash_table.storage[index]
 
     while current_pair is not None and current_pair.key != key:
