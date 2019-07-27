@@ -40,26 +40,26 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    #Get hashed version of key
-    # key_hash = hash(key)
-    # # #Form new key value pair
-    # # new_pair = Pair(key, value)
-    # #Find the index of pair
-    # index = key_hash % hash_table.capacity
-    index = hash(key, hash_table.capacity)
-    current_pair = hash_table.storage[index]
-
-    while current_pair is not None and current_pair.key != key:
-      current_pair = current_pair.next
-    if current_pair is None:
-      new_pair = Pair(key, value)
-      new_pair.next = hash_table.storage[index]
-      hash_table.storage[index] = new_pair
-    else:
-      current_pair.value = value
-
-    # Insert pair
-    hash_table.storage[index] = new_pair
+   
+    if hash_table.count == hash_table.capacity:
+      index = hash(key, hash_table.capacity)
+      if hash_table.storage[index] == None:
+        hash_table.storage[index] = Pair(key, value)
+        hash_table.count += 1
+      else:
+        current_pair = hash_table.storage[index]
+        duplicate = False
+        while current_pair.next is not None:
+          if current_pair.key == key:
+            current_pair.value = value
+            duplicate = True
+            break
+          current_pair = current_pair.next
+        if not duplicate:
+          hash_table.storage[index] = Pair(key, value)
+          hash_table.count += 1
+      # Insert pair
+    
 
 # '''
 # Fill this in.
