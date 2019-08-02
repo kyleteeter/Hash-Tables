@@ -4,7 +4,7 @@
 class array:
     def __init__(self, capacity):
         self.capacity = capacity
-        self.elements = [None] * capacity
+        self.elements = [None] * self.capacity
         self.count = 0
 
 
@@ -36,7 +36,7 @@ def array_read(array, index):
 def array_insert(array, value, index):
     # Throw an error if array is out of the current count
     if index > array.count:
-        print("")
+        print("Error!")
     # Resize the array if the number of elements is over capacity
     if array.capacity <= array.count:
         resize_array(array)
@@ -69,11 +69,11 @@ def array_remove(array, element):
             array.elements[i-1] == array.elements[i]
         elif array.elements[i] == element:
             removed = True
-        if removed:
-            array.count -=1
-            array.elements[array.count] = None
-        else:
-            print("Error, element" + str(element) + " not found")
+    if removed:
+        array.count -=1
+        array.elements[array.count] = None
+    else:
+        print("Error, element" + str(element) + " not found")
 
 
 # Remove the element in a given position and return it
@@ -83,7 +83,7 @@ def array_pop(array, index):
         print("Error, element " + str(index) +" is out of range")
         return None
     # Throw an error if array is out of the current count
-    return_value = array.elements[index]
+    value = array.elements[index]
 
     for i in range(index + 1, array.count):
         array.elements[i-1] = array.elements[i]
@@ -92,7 +92,7 @@ def array_pop(array, index):
     array.count -=1
     array.elements[array.count] = None
 
-    return return_value
+    return value
 
 
 # Utility to print an array
