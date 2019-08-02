@@ -46,21 +46,9 @@ def hash_table_insert(hash_table, key, value):
     hash_table.count += 1
   else:
     if key == hash_table.storage[index].key:
-
+      print(f"Warning Collision!")
     else:
       hash_table.storage[index].value = value
-      duplicate = False
-  # while current_pair.next is not None:
-  #   if current_pair.key == key:
-  #           current_pair.value = value
-  #           duplicate = True
-  #           break
-  #         current_pair = current_pair.next
-  #       if not duplicate:
-  #         hash_table.storage[index] = Pair(key, value)
-  #         hash_table.count += 1
-      # Insert pair
-    
 
 # '''
 # Fill this in.
@@ -68,10 +56,7 @@ def hash_table_insert(hash_table, key, value):
 # If you try to remove a value that isn't there, print a warning.
 # '''
 def hash_table_remove(hash_table, key):
-    #Hash Key
-    # key_hash = hash(key)
-    # #Get index
-    # index = key_hash % hash_table.capacity
+   
     index = hash(key, hash_table.capacity)
     #Remove value by setting it to None
     if hash_table.storage[index] != None:
@@ -85,9 +70,7 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 def hash_table_retrieve(hash_table, key):
-    # key_hash = hash(key)
-
-    # index = key_hash % hash_table.capacity
+   
     index = hash(key, hash_table.capacity)
 
     if hash_table.storage[index] is not None:
