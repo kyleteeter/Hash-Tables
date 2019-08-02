@@ -41,24 +41,24 @@ def hash(string, max):
 # Hint: Used the LL to handle collisions
 # '''
 def hash_table_insert(hash_table, key, value):
-      if hash_table.count == hash_table.capacity:
+    index = hash(key, hash_table.capacity)
+    if hash_table.count == hash_table.capacity:
         hash_table.resize
-        index = hash(key, hash_table.capacity)
-        if hash_table.storage[index] == None:
+    if hash_table.storage[index] == None:
+        hash_table.storage[index] = LinkedPair(key, value)
+        hash_table.count += 1
+    else:
+        current_pair = hash_table.storage[index]
+        duplicate = False
+        while current_pair.next is not None:
+            if current_pair.key == key:
+                current_pair.value = value
+                duplicate = True
+                break
+            current_pair = current_pair.next
+        if not duplicate:
             hash_table.storage[index] = LinkedPair(key, value)
             hash_table.count += 1
-        else:
-            current_pair = hash_table.storage[index]
-            duplicate = False
-            while current_pair.next is not None:
-                if current_pair.key == key:
-                    current_pair.value = value
-                    duplicate = True
-                    break
-                current_pair = current_pair.next
-            if not duplicate:
-                hash_table.storage[index] = LinkedPair(key, value)
-                hash_table.count += 1
         # Insert pair
 
     # Insert pair
