@@ -40,24 +40,25 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-   
-    if hash_table.count == hash_table.capacity:
-      index = hash(key, hash_table.capacity)
-      if hash_table.storage[index] == None:
-        hash_table.storage[index] = Pair(key, value)
-        hash_table.count += 1
-      else:
-        current_pair = hash_table.storage[index]
-        duplicate = False
-        while current_pair.next is not None:
-          if current_pair.key == key:
-            current_pair.value = value
-            duplicate = True
-            break
-          current_pair = current_pair.next
-        if not duplicate:
-          hash_table.storage[index] = Pair(key, value)
-          hash_table.count += 1
+  index = hash(key, hash_table.capacity)
+  if hash_table.storage[index] == None:
+    hash_table.storage[index] = Pair(key, value)
+    hash_table.count += 1
+  else:
+    if key == hash_table.storage[index].key:
+
+    else:
+      hash_table.storage[index].value = value
+      duplicate = False
+  # while current_pair.next is not None:
+  #   if current_pair.key == key:
+  #           current_pair.value = value
+  #           duplicate = True
+  #           break
+  #         current_pair = current_pair.next
+  #       if not duplicate:
+  #         hash_table.storage[index] = Pair(key, value)
+  #         hash_table.count += 1
       # Insert pair
     
 
@@ -75,6 +76,8 @@ def hash_table_remove(hash_table, key):
     #Remove value by setting it to None
     if hash_table.storage[index] != None:
         hash_table.storage[index] = None
+    else:
+      print(f"{key} not found.")
 
 # '''
 # Fill this in.
