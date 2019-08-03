@@ -42,24 +42,30 @@ def hash(string, max):
 # '''
 def hash_table_insert(hash_table, key, value):
     index = hash(key, hash_table.capacity)
-    if hash_table.count == hash_table.capacity:
-        hash_table.resize
-    if hash_table.storage[index] == None:
+
+
+    # if hash_table.count == hash_table.capacity:
+    #     hash_table.resize
+    # if hash_table.storage[index] == None:
+    #     hash_table.storage[index] = LinkedPair(key, value)
+    #     hash_table.count += 1
+    # else:
+    current_pair = hash_table.storage[index]
+    
+    while current_pair is not None and current_pair != key:
+        current_pair = current_pair.next
+
+    if current_pair is None:
+        new_pair = LinkedPair(key, value)
+        original = hash_table.storage[index]
         hash_table.storage[index] = LinkedPair(key, value)
-        hash_table.count += 1
-    else:
-        current_pair = hash_table.storage[index]
-        duplicate = False
-        while current_pair.next is not None:
-            if current_pair.key == key:
-                current_pair.value = value
-                duplicate = True
-                break
-            current_pair = current_pair.next
-        if not duplicate:
-            hash_table.storage[index] = LinkedPair(key, value)
-            hash_table.count += 1
+        new_pair.next = original
         # Insert pair
+
+        if new_pair.next is None:
+            hash_table.count += 1
+    else: 
+        current_pair.value = value
 
     # Insert pair
     
@@ -86,8 +92,11 @@ def hash_table_retrieve(hash_table, key):
     index = hash(key, hash_table.capacity)
     
     if hash_table.storage[index] is not None:
-        if hash_table.storage[index].key == key:
-            return hash_table.storage[index].value
+        while hash_table.storage[index].key != key:
+            hash_table.storage[index] = hash_table.storage[index].next
+        
+    else:
+        print('Key not found')
     return None
 
 
