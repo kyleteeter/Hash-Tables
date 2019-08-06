@@ -79,11 +79,14 @@ def hash_table_insert(hash_table, key, value):
 def hash_table_remove(hash_table, key):
     index = hash(key, hash_table.capacity)
     current_pair = hash_table.storage[index]
+    prev_pair = None
     
     # set previous node to equal current
-    
+    if current_pair is not None:
+        prev_pair = current_pair
+        current_pair = current_pair.next
     # once previous node is set override current node.
-    if hash_table.storage[index] != None:
+    if prev_pair is None:
         hash_table.storage[index] = None
 
 
