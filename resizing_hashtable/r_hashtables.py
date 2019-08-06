@@ -58,7 +58,7 @@ def hash_table_insert(hash_table, key, value):
     if current_pair is None:
         new_pair = LinkedPair(key, value)
         original = hash_table.storage[index]
-        hash_table.storage[index] = LinkedPair(key, value)
+        hash_table.storage[index] = new_pair
         new_pair.next = original
         # Insert pair
 
