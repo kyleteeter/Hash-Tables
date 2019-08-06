@@ -86,10 +86,13 @@ def hash_table_remove(hash_table, key):
         prev_pair = current_pair
         current_pair = current_pair.next
     # once previous node is set override current node.
-    if prev_pair is None:
-        hash_table.storage[index] = None
+        if prev_pair is None:
+            hash_table.storage[index] = None
+        else:
+            prev_pair.next = None
 
-
+    else:
+        print('Error, no key')
 # '''
 # Fill this in.
 
